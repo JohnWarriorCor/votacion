@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col oculto-impresion">
         <div class="card eleccion" (click)="openSm(content1)" (click)="voto(participante3)" style="width: 18rem;border-radius: 20px 20px 0 0;">
           <img src="assets/urna.jpg" style="width: 80%;margin: auto;padding-top: 10px;padding-bottom: 0px;border-radius: 20px 20px 0 0;" class="card-img-top" alt="...">
           <div class="card-body" style="padding: 0px;">
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="text-center">
+    <div class="text-center oculto-impresion">
       <button *ngIf="boton != false" class="btn btn-success" style="width: 20%;margin-bottom: 5px;" (click)="openLg(content2)">Recuento</button>
       <div class="form-group">
         <input *ngIf="input != false" type="password" (change)="pass(key)" [(ngModel)]="key" style="width: 20%;margin: auto;" class="form-control" placeholder="Contraseña">
@@ -73,7 +73,7 @@
           </tbody>
         </table>
       </div>
-      <div class="modal-footer" style="background-color: #F90705;">
+      <div class="modal-footer oculto-impresion" style="background-color: #F90705;">
         <input type="button" class="btn btn-success" name="imprimir" value="Imprimir" onclick="window.print();">
         <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Cerrar</button>
       </div>
