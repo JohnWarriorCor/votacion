@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="jumbotron vertical-center" style="background-color: white;padding-top: 9.5%;padding-bottom: 0;padding-left: 20px;padding-right: 20px;margin-top: 10px;">
+    <div class="row text-center">
+      <div class="col">
+        <div class="card eleccion" (click)="openSm(content1)" (click)="voto(participante1)" style="width: 18rem;border-radius: 20px 20px 0 0;">
+          <img src="assets/representante1.jpg" style="width: 80%;margin: auto;padding-top: 10px;padding-bottom: 0px;border-radius: 20px 20px 0 0;" class="card-img-top" alt="...">
+          <div class="card-body" style="padding: 0px;">
+            <img src="assets/01.png" style="width: 100%" alt="...">  
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card eleccion" (click)="openSm(content1)" (click)="voto(participante2)" style="width: 18rem;border-radius: 20px 20px 0 0;">
+          <img src="assets/representante2.jpg" style="width: 80%;margin: auto;padding-top: 10px;padding-bottom: 0px;border-radius: 20px 20px 0 0;" class="card-img-top" alt="...">
+          <div class="card-body" style="padding: 0px;">
+            <img src="assets/02.png" style="width: 100%" alt="...">  
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card eleccion" (click)="openSm(content1)" (click)="voto(participante3)" style="width: 18rem;border-radius: 20px 20px 0 0;">
+          <img src="assets/urna.jpg" style="width: 80%;margin: auto;padding-top: 10px;padding-bottom: 0px;border-radius: 20px 20px 0 0;" class="card-img-top" alt="...">
+          <div class="card-body" style="padding: 0px;">
+            <img src="assets/blanco.png" style="width: 100%" alt="..."> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button *ngIf="boton != false" class="btn btn-success" style="width: 20%;margin-bottom: 5px;" (click)="openLg(content2)">Recuento</button>
+      <div class="form-group">
+        <input *ngIf="input != false" type="password" (change)="pass(key)" [(ngModel)]="key" style="width: 20%;margin: auto;" class="form-control" placeholder="Contraseña">
+      </div>
+    </div>
+    <ng-template #content1 let-modal>
+      <div class="modal-body text-center">
+        <img src="assets/check.png" style="width: 50%;margin: auto;" class="card-img-top">
+      </div>
+      <div class="modal-footer" style="background-color: #F90705;">
+        <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Volver</button>
+      </div>
+    </ng-template>
+    <ng-template #content2 let-modal>
+      <div class="modal-body">
+        <table class="table text-center" style="vertical-align: middle;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="width: 30%;">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Votos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Javier Alexis Espinosa</td>
+              <td>{{acum1}}</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Claudia Yisela Bustos</td>
+              <td>{{acum2}}</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Voto en blanco</td>
+              <td>{{acum3}}</td>
+            </tr>
+            <tr>
+              <th scope="col">Total de votos</th>
+              <td colspan="2">{{acumTotal}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer" style="background-color: #F90705;">
+        <input type="button" class="btn btn-success" name="imprimir" value="Imprimir" onclick="window.print();">
+        <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Cerrar</button>
+      </div>
+    </ng-template>
+  </div>
+</div>
