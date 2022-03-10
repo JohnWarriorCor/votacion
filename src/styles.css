@@ -13,7 +13,7 @@ footer {
   background-color: #008000;
 }
 .red-inst {
-  background-color: #fe0100;
+  background-color: #b12b2b;
 }
 .yellow-inst {
   background-color: #fffd82;
@@ -24,17 +24,18 @@ footer {
 .card {
   margin: 0 auto; /* Added */
   float: none; /* Added */
-  margin-bottom: 20px; /* Added */
+  width: 150%;
 }
 .card-size{
   width: 14rem;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 20px 20px;
 }
 .eleccion {
-  background-color: #fffe6f;
+  background-color: #175e35;
+  border: solid rgb(141, 77, 4) 10px;
 }
 .eleccion:hover {
-  background-color: rgb(250, 250, 59);
+  background-color: #175e35;
   -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }

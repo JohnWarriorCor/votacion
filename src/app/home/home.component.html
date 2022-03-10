@@ -1,119 +1,100 @@
 <div class="container mb-0">
-  <div class="jumbotron vertical-center white-inst mt-4 ml-4 mr-4 mb-0">
+  <div
+    class="jumbotron vertical-center white-inst mt-5 ml-4 mr-4 mb-0 pt-2 pb-2"
+    *ngIf="vistaTarjeton"
+  >
+    <div class="row text-center mb-5">
+      <div class="col">
+        <h1 style="font-family: Bahnschrift SemiBold">PERSONERO</h1>
+      </div>
+    </div>
     <div class="row text-center">
       <div class="col">
         <div
-          class="card eleccion card-size"
-          (click)="openSm(content1)"
-          (click)="voto(participante1)"
+          class="card eleccion card-size p-2"
+          (click)="votoPersonero(personero1)"
         >
           <img
-            src="assets/representante1.jpg"
-            style="
-              width: 80%;
-              margin: auto;
-              padding-top: 10px;
-              padding-bottom: 0px;
-              border-radius: 20px 20px 0 0;
-            "
+            src="assets/personero1.png"
+            style="border-radius: 20px 20px 20px 20px"
             class="card-img-top"
-            alt="..."
           />
-          <div class="card-body" style="padding: 0px">
-            <img src="assets/01.png" style="width: 100%" alt="..." />
-          </div>
         </div>
       </div>
       <div class="col">
         <div
-          class="card eleccion card-size"
-          (click)="openSm(content1)"
-          (click)="voto(participante2)"
+          class="card eleccion card-size p-2"
+          (click)="votoPersonero(personero2)"
         >
           <img
-            src="assets/representante2.jpg"
-            style="
-              width: 80%;
-              margin: auto;
-              padding-top: 10px;
-              padding-bottom: 0px;
-              border-radius: 20px 20px 0 0;
-            "
+            src="assets/personero2.png"
+            style="border-radius: 20px 20px 20px 20px"
             class="card-img-top"
-            alt="..."
           />
-          <div class="card-body" style="padding: 0px">
-            <img src="assets/02.png" style="width: 100%" alt="..." />
-          </div>
         </div>
       </div>
       <div class="col oculto-impresion">
         <div
-          class="card eleccion card-size"
-          (click)="openSm(content1)"
-          (click)="voto(participante3)"
+          class="card eleccion card-size p-2"
+          (click)="votoPersonero(blancoPersonero)"
         >
           <img
-            src="assets/urna.jpg"
-            style="
-              width: 80%;
-              margin: auto;
-              padding-top: 10px;
-              padding-bottom: 0px;
-              border-radius: 20px 20px 0 0;
-            "
+            src="assets/blanco.png"
+            style="border-radius: 20px 20px 20px 20px"
             class="card-img-top"
-            alt="..."
           />
-          <div class="card-body" style="padding: 0px">
-            <img src="assets/blanco.png" style="width: 100%" alt="..." />
-          </div>
         </div>
       </div>
     </div>
-    <div class="text-center oculto-impresion">
-      <button
-        *ngIf="boton != false"
-        class="btn btn-success"
-        style="width: 20%; margin-bottom: 5px"
-        (click)="openLg(content2)"
-      >
-        Recuento
-      </button>
-      <div class="form-group">
-        <input
-          *ngIf="input != false"
-          type="password"
-          (change)="pass(key)"
-          [(ngModel)]="key"
-          style="width: 20%; margin: auto"
-          class="form-control"
-          placeholder="Contraseña"
-        />
+    <div class="row text-center mt-3">
+      <div class="col oculto-impresion">
+        <button
+          class="btn btn-secondary mr-3"
+          (click)="accesoReporte()"
+          *ngIf="acceso"
+        >
+          <i class="fas fa-list"></i>
+        </button>
+        <button
+          *ngIf="reporte"
+          class="btn btn-success"
+          (click)="openLg(content2)"
+        >
+          Recuento
+        </button>
+        <div class="form-group" *ngIf="clave">
+          <form>
+            <div class="form-row align-items-center">
+              <div class="col-sm-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-key"></i>
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inlineFormInputGroupUsername"
+                    placeholder="Contraseña"
+                    name="key"
+                    (change)="pass(key)"
+                    [(ngModel)]="key"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    <ng-template #content1 let-modal>
-      <div class="modal-body text-center">
-        <img
-          src="assets/check.png"
-          style="width: 50%; margin: auto"
-          class="card-img-top"
-        />
-      </div>
-      <div class="modal-footer" style="background-color: #f90705">
-        <button
-          type="button"
-          class="btn btn-success"
-          (click)="modal.close('Close click')"
-        >
-          Volver
-        </button>
-      </div>
-    </ng-template>
     <ng-template #content2 let-modal>
       <div class="modal-body">
-        <table class="table text-center" style="vertical-align: middle">
+        <table class="table" style="vertical-align: middle">
           <thead class="thead-dark">
+            <tr>
+              <th colspan="3">Personero</th>
+            </tr>
             <tr>
               <th scope="col" style="width: 30%">#</th>
               <th scope="col">Nombre</th>
@@ -122,41 +103,239 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td>Javier Alexis Espinosa</td>
-              <td>{{ acum1 }}</td>
+              <th scope="row">01</th>
+              <td>Karen Julieth Corredor Murcia</td>
+              <td>{{ votoPersonero1 }}</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
-              <td>Claudia Yisela Bustos</td>
-              <td>{{ acum2 }}</td>
+              <th scope="row">02</th>
+              <td>Martin Elías Castañeda Cortez</td>
+              <td>{{ votoPersonero2 }}</td>
             </tr>
             <tr>
-              <th scope="row">3</th>
+              <th scope="row">-</th>
               <td>Voto en blanco</td>
-              <td>{{ acum3 }}</td>
+              <td>{{ votoBlancoPersonero }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table" style="vertical-align: middle">
+          <thead class="thead-dark">
+            <tr>
+              <th colspan="3">Contralor</th>
+            </tr>
+            <tr>
+              <th scope="col" style="width: 30%">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Votos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">01</th>
+              <td>Angela Catherine Oviedo Rodriguez</td>
+              <td>{{ votoContralor1 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">02</th>
+              <td>Kevin Santiago Mosquera Rodriguez</td>
+              <td>{{ votoContralor2 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">-</th>
+              <td>Voto en blanco</td>
+              <td>{{ votoBlancoContralor }}</td>
             </tr>
             <tr>
               <th scope="col">Total de votos</th>
-              <td colspan="2">{{ acumTotal }}</td>
+              <td colspan="2">{{ votosTotales }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div
-        class="modal-footer oculto-impresion"
-        style="background-color: #f90705"
-      >
-        <input
-          type="button"
-          class="btn btn-success"
-          name="imprimir"
-          value="Imprimir"
-          onclick="window.print();"
-        />
+      <div class="modal-footer oculto-impresion">
         <button
           type="button"
+          class="btn btn-secondary"
+          name="imprimir"
+          onclick="window.print();"
+        >
+          <i class="fas fa-print"> Imprimir</i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="modal.close('Close click')"
+        >
+          Cerrar
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  <div
+    class="jumbotron vertical-center white-inst mt-5 ml-4 mr-4 mb-0 pt-2 pb-2"
+    *ngIf="!vistaTarjeton"
+  >
+    <div class="row text-center mb-5">
+      <div class="col">
+        <h1 style="font-family: Bahnschrift SemiBold">CONTRALOR</h1>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <div
+          class="card eleccion card-size p-2"
+          (click)="votoContralor(contralor1)"
+        >
+          <img
+            src="assets/contralor1.png"
+            style="border-radius: 20px 20px 20px 20px"
+            class="card-img-top"
+          />
+        </div>
+      </div>
+      <div class="col">
+        <div
+          class="card eleccion card-size p-2"
+          (click)="votoContralor(contralor2)"
+        >
+          <img
+            src="assets/contralor2.png"
+            style="border-radius: 20px 20px 20px 20px"
+          />
+        </div>
+      </div>
+      <div class="col oculto-impresion">
+        <div
+          class="card eleccion card-size p-2"
+          (click)="votoContralor(blancoContralor)"
+        >
+          <img
+            src="assets/blanco.png"
+            style="border-radius: 20px 20px 20px 20px"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row text-center mt-3">
+      <div class="col oculto-impresion">
+        <button
+          class="btn btn-secondary mr-3"
+          (click)="accesoReporte()"
+          *ngIf="acceso"
+        >
+          <i class="fas fa-list"></i>
+        </button>
+        <button
+          *ngIf="reporte"
           class="btn btn-success"
+          (click)="openLg(content2)"
+        >
+          Recuento
+        </button>
+        <div class="form-group" *ngIf="clave">
+          <form>
+            <div class="form-row align-items-center">
+              <div class="col-sm-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-key"></i>
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inlineFormInputGroupUsername"
+                    placeholder="Contraseña"
+                    name="key"
+                    (change)="pass(key)"
+                    [(ngModel)]="key"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <ng-template #content2 let-modal>
+      <div class="modal-body">
+        <table class="table" style="vertical-align: middle">
+          <thead class="thead-dark">
+            <tr>
+              <th colspan="3">Contralor</th>
+            </tr>
+            <tr>
+              <th scope="col" style="width: 30%">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Votos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">01</th>
+              <td>Karen Julieth Corredor Murcia</td>
+              <td>{{ votoPersonero1 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">02</th>
+              <td>Martin Elías Castañeda Cortez</td>
+              <td>{{ votoPersonero2 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">-</th>
+              <td>Voto en blanco</td>
+              <td>{{ votoBlancoPersonero }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table" style="vertical-align: middle">
+          <thead class="thead-dark">
+            <tr>
+              <th colspan="3">Contralor</th>
+            </tr>
+            <tr>
+              <th scope="col" style="width: 30%">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Votos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">01</th>
+              <td>Angela Catherine Oviedo Rodriguez</td>
+              <td>{{ votoContralor1 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">02</th>
+              <td>Kevin Santiago Mosquera Rodriguez</td>
+              <td>{{ votoContralor2 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">-</th>
+              <td>Voto en blanco</td>
+              <td>{{ votoBlancoContralor }}</td>
+            </tr>
+            <tr>
+              <th scope="col">Total de votos</th>
+              <td colspan="2">{{ votosTotales }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer oculto-impresion">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          name="imprimir"
+          onclick="window.print();"
+        >
+          <i class="fas fa-print"> Imprimir</i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
           (click)="modal.close('Close click')"
         >
           Cerrar

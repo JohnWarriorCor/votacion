@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-home',
@@ -7,55 +8,128 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  
   key: any;
-  boton = false;
-  input = true;
+
+  vistaTarjeton = true;
+
+  acceso = true
+  reporte = false;
+  clave = false;
+
   closeResult: string;
-  participante1 = 1;
-  participante2 = 2;
-  participante3 = 3;
-  participante4 = 4;
-  acum1 = 0;
-  acum2 = 0;
-  acum3 = 0;
-  acum4 = 0;
-  acumTotal = 0;
+
+  personero1 = 1;
+  personero2 = 2;
+  blancoPersonero = 3;
+
+  contralor1 = 1;
+  contralor2 = 2;
+  blancoContralor = 3;
+
+  votoPersonero1 = 0;
+  votoPersonero2 = 0;
+  votoBlancoPersonero = 0;
+
+  votoContralor1 = 0;
+  votoContralor2 = 0;
+  votoBlancoContralor = 0;
+  votosTotales = 0;
+
   constructor(private modalService: NgbModal) { }
-  voto(candidato) {
+  votoPersonero(candidato) {
     switch (candidato) {
       case 1: {
-        this.acum1 = this.acum1 + 1;
-        this.acumTotal = this.acumTotal + 1;
+        this.votoPersonero1 = this.votoPersonero1 + 1;
+        swal({
+          title: '¡Gracias por tu voto!',
+          text: 'Recuerda elegir un contralor.',
+          icon: 'warning',
+          buttons: ['Elegir contralor',]
+        });
+        this.vistaTarjeton = !this.vistaTarjeton;
         break;
       }
       case 2: {
-        this.acum2 = this.acum2 + 1;
-        this.acumTotal = this.acumTotal + 1;
+        this.votoPersonero2 = this.votoPersonero2 + 1;
+        swal({
+          title: '¡Gracias por tu voto!',
+          text: 'Recuerda elegir un contralor.',
+          icon: 'warning',
+          buttons: ['Elegir contralor',]
+        });
+        this.vistaTarjeton = !this.vistaTarjeton;
         break;
       }
       case 3: {
-        this.acum3 = this.acum3 + 1;
-        this.acumTotal = this.acumTotal + 1;
-        break;
-      }
-      case 4: {
-        this.acum4 = this.acum4 + 1;
-        this.acumTotal = this.acumTotal + 1;
+        this.votoBlancoPersonero = this.votoBlancoPersonero + 1;
+        swal({
+          title: '¡Gracias por tu voto!',
+          text: 'Recuerda elegir un contralor.',
+          icon: 'warning',
+          buttons: ['Elegir contralor',]
+        });
+        this.vistaTarjeton = !this.vistaTarjeton;
         break;
       }
     }
   }
+  votoContralor(candidato) {
+    switch (candidato) {
+      case 1: {
+        this.votoContralor1 = this.votoContralor1 + 1;
+        this.votosTotales = this.votosTotales + 1;
+        swal({
+          title: '¡Gracias por tu voto!',
+          text: 'Fin del proceso, tu participación es muy importante.',
+          icon: 'success',
+          buttons: ['Finalizar voto',]
+        });
+        this.vistaTarjeton = !this.vistaTarjeton;
+        break;
+      }
+      case 2: {
+        this.votoContralor2 = this.votoContralor2 + 1;
+        this.votosTotales = this.votosTotales + 1;
+        swal({
+          title: '¡Gracias por tu voto!',
+          text: 'Fin del proceso, tu participación es muy importante.',
+          icon: 'success',
+          buttons: ['Finalizar voto',]
+        });
+        this.vistaTarjeton = !this.vistaTarjeton;
+        break;
+      }
+      case 3: {
+        this.votoBlancoContralor = this.votoBlancoContralor + 1;
+        this.votosTotales = this.votosTotales + 1;
+        swal({
+          title: '¡Gracias por tu voto!',
+          text: 'Fin del proceso, tu participación es muy importante.',
+          icon: 'success',
+          buttons: ['Finalizar voto',]
+        });
+        this.vistaTarjeton = !this.vistaTarjeton;
+        break;
+      }
+    }
+  }
+
+  accesoReporte(){
+    this.clave = true;
+    this.acceso = false;
+  }
+
   pass(key) {
     if (key === '1234') {
-      this.boton = true;
-      this.input = false;
+      this.reporte = true;
+      this.clave = false;
     }
   }
-  openSm(content) {
-    this.modalService.open(content, { size: 'sm', centered: true });
-  }
+
   ngOnInit() {
   }
+
   openLg(content) {
     this.modalService.open(content, { size: 'lg', centered: true });
   }
